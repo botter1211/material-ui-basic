@@ -19,7 +19,7 @@ import { CurrentUserContext } from "../App";
 
 export default function JobCard({ job }) {
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = React.useContext(CurrentUserContext);
+  const { currentUser } = React.useContext(CurrentUserContext);
   return (
     <Card
       sx={{ height: 300, position: "relative" }}

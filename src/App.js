@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import { Routes, Route } from "react-router-dom";
 import DetailJob from "./pages/DetailJob";
 import { CssBaseline } from "@mui/material";
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import Login from "./pages/Login";
 
 const darkTheme = createTheme({

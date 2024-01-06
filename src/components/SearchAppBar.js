@@ -9,7 +9,6 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
-import { Menu, MenuItem } from "@mui/material";
 import { CurrentUserContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
@@ -56,10 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
   const { currentUser, setCurrentUser } = React.useContext(CurrentUserContext);
-  const auth = React.useContext(CurrentUserContext);
 
   const navigate = useNavigate();
   const handlClickLogin = (event) => {

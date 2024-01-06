@@ -14,7 +14,7 @@ function DetailJob() {
     </Box>
   );
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = React.useContext(CurrentUserContext);
+  const { currentUser } = React.useContext(CurrentUserContext);
   if (!job) {
     return (
       <Container>
