@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import { CurrentUserContext } from "../App";
 
 // const bull = (
 //   <Box
@@ -18,10 +19,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function JobCard({ job }) {
   const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = React.useContext(CurrentUserContext);
   return (
     <Card
       sx={{ height: 300, position: "relative" }}
-      onClick={() => navigate(`/job/${job.id}`)}
+      onClick={() => {
+        if (currentUser) navigate(`/job/${job.id}`);
+        else navigate("/login");
+      }}
     >
       <CardContent>
         <Typography
@@ -50,6 +55,7 @@ export default function JobCard({ job }) {
             position: "absolute",
             bottom: 5,
             left: "50%",
+            transform: "translate(-50%)",
           }}
         >
           Learn More

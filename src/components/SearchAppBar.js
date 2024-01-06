@@ -9,6 +9,9 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
+import { Menu, MenuItem } from "@mui/material";
+import { CurrentUserContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,6 +56,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const { currentUser, setCurrentUser } = React.useContext(CurrentUserContext);
+  const auth = React.useContext(CurrentUserContext);
+
+  const navigate = useNavigate();
+  const handlClickLogin = (event) => {
+    navigate("/login");
+  };
+
+  const handlClickLogout = (event) => {
+    setCurrentUser(null);
+    navigate("/");
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -83,15 +100,16 @@ export default function SearchAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
+          {currentUser && (
+            <>
+              <AccountCircle sx={{ ml: 2 }} />
+              {currentUser}
+              <IconButton onClick={handlClickLogout}>Logout</IconButton>
+            </>
+          )}
+          {!currentUser && (
+            <IconButton onClick={handlClickLogin}>Login</IconButton>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
